@@ -19,11 +19,12 @@ const products=new mongoose.Schema({
         default: true,
     },
     netWeight:{
-        type: String,
+        type: Number,
         required: true
     },
     stores:[{
         type: String,
+        
     }]
 });
 

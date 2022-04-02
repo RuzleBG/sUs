@@ -1,18 +1,29 @@
 const router= require("./routes/recipe.js");
+const storesrouter=require("./routes/stores.js")
 const express=require("express");
 const mongoose=require("mongoose");
 const products= require("./modules/products")
+const recipes=require("./modules/recipes");
+const { render } = require("express/lib/response");
 const app=express();
+app.use(express.json()) 
 
-const uri='mongodb+srv://Sussy:sussy@cluster0.muvzk.mongodb.net/app?retryWrites=true&w=majority'
-mongoose.connect(uri);
-mongoose.connection.on('connected', ()=>{
-    console.log("dobre e");
-}
-)
+app.use(express.static(__dirname + '/public'));
+
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({
+    extended:false,
+}));
+
 app.get('/', (req,res)=>{
-    res.send("dobre")
-});
+
+    res.render("index.ejs")
+
+})
+app.get('/finalize', (req,res)=>{
+    render('final.ejs', totalpay)
+})
+app.use('/stores', storesrouter);
 
 app.use('/recipe',router);
 

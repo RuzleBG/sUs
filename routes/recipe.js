@@ -1,36 +1,43 @@
+const { request } = require("express");
 const express= require("express");
 const mongoose=require("mongoose");
 const router=express.Router();
 const products=require("../modules/products");
+const recipes=require("../modules/recipes")
 
-router.get("/",(req,res)=>{
-    res.send("blank");
+router.get("/",async (req,res)=>{
+    res.render("recipe.ejs")
+
 });
 router.get("/favorite", async (req,res)=>{
-    res.send("favorite")
-    const product=new products({
-        name: "rice",
-        type: "brown",
-        price: 12.92,
-        netWeight: 500,
-        avaliable: true,
-        stores: ["kaufland"]
-     })
-
-     await product.save();
-     
+    const fav_recipes=new recipes.find({
+        favorite:true
+    })
+    res.render("recipe.ejs", {fav_recipes:fav_recipes});
 });
 
 router.get("/popular", (req,res)=>{
-    res.send("popular");
+    res.render("popular_recipes.ejs");
+
 })
 
-router.put("/popular", async (req,res)=>{
- 
+router.put("/update", async (req,res)=>{
+    const new_recipe=new recipes({
+        name: req.body.name,
+        type: req.body.type,
+        ingredients: req.body.ingredients,
+        favorite: req.body.favorite,
+    })
+    await new_recipe.save();
+    res.redirect("/popular");
 })
 
-router.get("/popular/:id", (req,res)=>{
-    res.send(req.params.id);
+router.delete("/delete", async(req,res)=>{
+    recipes.findOneAndDelete({
+        name: req.body.name,
+        type: req.body.type
+    })
 })
+
 
 module.exports=router;
