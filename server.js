@@ -1,35 +1,21 @@
 const router= require("./routes/recipe.js");
 const express=require("express");
 const mongoose=require("mongoose");
+const products= require("./modules/products")
 const app=express();
 
-const axios = require('axios')
-
-const getBreeds = async () => {
-  try {
-    return await axios.get('https://dog.ceo/api/breeds/list/all')
-  } catch (error) {
-    console.error(error)
-  }
+const uri='mongodb+srv://Sussy:sussy@cluster0.muvzk.mongodb.net/app?retryWrites=true&w=majority'
+mongoose.connect(uri);
+mongoose.connection.on('connected', ()=>{
+    console.log("dobre e");
 }
-
-const countBreeds = async () => {
-  const breeds = await getBreeds()
-
-  if (breeds.data.message) {
-    console.log(breeds)
-  }
-}
-
-
-//getting the api
-
+)
 app.get('/', (req,res)=>{
-    countBreeds();
+    res.send("dobre")
 });
 
 app.use('/recipe',router);
 
-app.listen('1000', (res,req)=>{
+app.listen('3000', (res,req)=>{
     console.log("Running on port 4000");
 });
