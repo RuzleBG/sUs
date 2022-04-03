@@ -33,11 +33,21 @@ router.put("/update", async (req,res)=>{
 })
 
 router.delete("/delete", async(req,res)=>{
-    recipes.findOneAndDelete({
+   await recipes.findOneAndDelete({
         name: req.body.name,
         type: req.body.type
     })
 })
 
+router.get('/add', async (req,res)=>{
+    const item=new products.findOne({
+        type: req.body.type,
+        name: req.body.name,
+    })
+    if(item.avaliable==true){
+        checkout+=item.price;
+    }
+    res.redirect("/popular");
+})
 
 module.exports=router;

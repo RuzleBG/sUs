@@ -4,9 +4,9 @@ const express=require("express");
 const mongoose=require("mongoose");
 const products= require("./modules/products")
 const recipes=require("./modules/recipes");
-const { render } = require("express/lib/response");
 const app=express();
 app.use(express.json()) 
+global.checkout=0;
 
 app.use(express.static(__dirname + '/public'));
 
@@ -21,11 +21,11 @@ app.get('/', (req,res)=>{
 
 })
 app.get('/finalize', (req,res)=>{
-    render('final.ejs', totalpay)
+    render('final.ejs', checkout)
 })
 app.use('/stores', storesrouter);
 
-app.use('/recipe',router);
+app.use('/recipe', router);
 
 app.listen('3000', (res,req)=>{
     console.log("Running on port 4000");
