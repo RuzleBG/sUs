@@ -22,13 +22,13 @@
 			<i class="fa fa-bars"></i>
 			<span class="sr-only">Toggle navigation</span>
 			</button>
-			<a href="index.html" class="navbar-brand brand"> SUS </a>
+			<a href="index.html" class="navbar-brand brand"> sUs </a>
 		</div>
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="propClone"><a href="index.html">Home</a></li>
 				<li class="propClone"><a href="shop.html">Recipes</a></li>
-				<li class="propClone"><a href="fav.html">Favourites</a></li>
+				<li class="propClone"><a href="fav.html">Shops</a></li>
 				<li class="propClone"><a href="product.html">Seperate Items</a></li>
 				<li class="propClone"><a href="checkout.html">Checkout</a></li>
 				<li class="propClone"><a href="contact.html">About us</a></li>
@@ -40,8 +40,8 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<div class="text-pageheader">
-					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.0s">
-						 Checkout
+					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
+						 Stores
 					</div>
 				</div>
 			</div>
@@ -49,12 +49,13 @@
 	</div>
 </div>
 </header>
+
 <!-- CONTENT =============================-->
 <section class="item content">
 <div class="container toparea">
 	<div class="underlined-title">
 		<div class="editContent">
-			<h1 class="text-center latestitems">Get in Touch</h1>
+			<h1 class="text-center latestitems">Our Stores </h1>
 		</div>
 		<div class="wow-hr type_short">
 			<span class="wow-hr-h">
@@ -65,22 +66,61 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
-			<div class="done">
-				<div class="alert alert-success">
-					<button type="button" class="close" data-dismiss="alert">×</button>
-					Your message has been sent. Thank you!
+		<div class="col-md-4">
+			<div class="productbox">
+				<div class="fadeshop">
+					<div class="captionshop text-center" style="display: none;">
+						<h3>Kaufland</h3>
+						<p>
+							<a href="#" class="learn-more detailslearn" onclick="location.href ='product.html'"><i class="fa fa-shopping-cart"></i>Go to store</a>
+						</p>
+					</div>
+					<span class="maxproduct"><img src="images/Store/Kauf.png" alt=""></span>
+				</div>
+				<div class="product-details">
+
+					</span>
 				</div>
 			</div>
-			<form method="post" action="contact.php" id="contactform">
-				<div class="form">
-					<input type="text" name="name" placeholder="Your Name *">
-					<input type="text" name="email" placeholder="Your E-mail Address *">
-					<textarea name="comment" rows="7" placeholder="Type your Message *"></textarea>
-					<input type="submit" id="submit" class="clearfix btn" value="Send">
-				</div>
-			</form>
 		</div>
+		<!-- /.productbox -->
+		<div class="col-md-4">
+			<div class="productbox">
+				<div class="fadeshop">
+					<div class="captionshop text-center" style="display: none;">
+						<h3>Lidl</h3>
+					
+						<p>
+							<a href="#" class="learn-more detailslearn" onclick="location.href ='product.html'"><i class="fa fa-shopping-cart"></i>Go to store</a>
+						</p>
+					</div>
+					<span class="maxproduct"><img src="images/Store/Lidl.png" alt=""></span>
+				</div>
+				<div class="product-details">
+
+					</span>
+				</div>
+			</div>
+		</div>
+		<!-- /.productbox -->
+		<div class="col-md-4">
+			<div class="productbox">
+				<div class="fadeshop">
+					<div class="captionshop text-center" style="display: none;">
+						<h3>Billa</h3>
+					
+						<p>
+							<a href="#" class="learn-more detailslearn" onclick="location.href ='product.html'"><i class="fa fa-shopping-cart"></i>Go to store</a>
+						</p>
+					</div>
+					<span class="maxproduct"><img src="images/Store/Billa.jpg" alt=""></span>
+				</div>
+				<div class="product-details">
+					</span>
+				</div>
+			</div>
+		</div>
+	
 	</div>
 </div>
 </div>
@@ -98,10 +138,24 @@
 </div>
 </div>
 </section>
-<!-- SCRIPTS =============================-->
+
+
+<!-- Load JS here for greater good =============================-->
 <script src="js/jquery-.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/anim.js"></script>
-<script src="js/validate.js"></script>
+<script>
+//----HOVER CAPTION---//	  
+jQuery(document).ready(function ($) {
+	$('.fadeshop').hover(
+		function(){
+			$(this).find('.captionshop').fadeIn(150);
+		},
+		function(){
+			$(this).find('.captionshop').fadeOut(150);
+		}
+	);
+});
+</script>
 </body>
 </html>

@@ -1,35 +1,32 @@
 const router= require("./routes/recipe.js");
+const storesrouter=require("./routes/stores.js")
 const express=require("express");
 const mongoose=require("mongoose");
+const products= require("./modules/products")
+const recipes=require("./modules/recipes");
 const app=express();
+app.use(express.json()) 
+global.checkout=0;
 
-const axios = require('axios')
+app.use(express.static(__dirname + '/public'));
 
-const getBreeds = async () => {
-  try {
-    return await axios.get('https://dog.ceo/api/breeds/list/all')
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-const countBreeds = async () => {
-  const breeds = await getBreeds()
-
-  if (breeds.data.message) {
-    console.log(breeds)
-  }
-}
-
-
-//getting the api
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({
+    extended:false,
+}));
 
 app.get('/', (req,res)=>{
-    countBreeds();
-});
 
-app.use('/recipe',router);
+    res.render("index.ejs")
 
-app.listen('1000', (res,req)=>{
+})
+app.get('/finalize', (req,res)=>{
+    render('final.ejs', checkout)
+})
+app.use('/stores', storesrouter);
+
+app.use('/recipe', router);
+
+app.listen('3000', (res,req)=>{
     console.log("Running on port 4000");
 });
